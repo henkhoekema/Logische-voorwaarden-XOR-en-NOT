@@ -1,0 +1,131 @@
+# De automatisering vergelijkt beide ingangen.
+# Alleen wanneer ze verschillend zijn, wordt de uitgang ingeschakeld.
+  - id: simulatie_xor
+    alias: "Simulatie XOR"
+    description: "XOR-uitgang is AAN wanneer precies één ingang AAN is."
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_boolean.xor_a
+          - input_boolean.xor_b
+      - trigger: homeassistant
+        event: start
+    actions:
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state('input_boolean.xor_a', 'on')
+                     != is_state('input_boolean.xor_b', 'on') }}
+            sequence:
+              - action: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.xor_result
+        default:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.xor_result
+    mode: restart
+
+# Wanneer de ingang AAN staat, wordt de uitgang UIT. En andersom.
+  - id: simulatie_not
+    alias: "Simulatie NOT"
+    description: "NOT-uitgang is altijd het tegenovergestelde van de ingang."
+    triggers:
+      - trigger: state
+        entity_id: input_boolean.not_input
+      - trigger: homeassistant
+        event: start
+    actions:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.not_input
+                state: "off"
+            sequence:
+              - action: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.not_result
+        default:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.not_result
+    mode: restart
+
+# Je wilt een waarschuwingslamp inschakelen wanneer precies één van de twee melders
+# beweging detecteert.
+  - id: xor_bewegingsmelders
+    alias: "XOR - Bewegingsmelders"
+    description: "Schakelt een lamp wanneer precies één bewegingsmelder actief is."
+    triggers:
+      - trigger: state
+        entity_id:
+          - binary_sensor.beweging_woonkamer
+          - binary_sensor.beweging_hal
+      - trigger: homeassistant
+        event: start
+    actions:
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: >
+                  {{ is_state('binary_sensor.beweging_woonkamer', 'on')
+                     != is_state('binary_sensor.beweging_hal', 'on') }}
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id: light.waarschuwingslamp
+        default:
+          - action: light.turn_off
+            target:
+              entity_id: light.waarschuwingslamp
+    mode: restart
+
+# Een raamcontact geeft aan of een raam open of gesloten is.
+# We willen een helper gebruiken die aangeeft of verwarming is toegestaan.
+# Raam gesloten (off) → verwarming toegestaan (on).
+# Raam open (on) → verwarming niet toegestaan (off).
+  - id: not_verwarming_raam
+    alias: "NOT - Verwarming bij gesloten raam"
+    description: "Verwarming is alleen toegestaan wanneer het raam gesloten is."
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.raam_woonkamer
+      - trigger: homeassistant
+        event: start
+    actions:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.raam_woonkamer
+                state: "off"
+            sequence:
+              - action: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.verwarming_toegestaan
+        default:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.verwarming_toegestaan
+    mode: restart
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

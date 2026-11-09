@@ -1,0 +1,110 @@
+type: vertical-stack
+cards:
+  - type: markdown
+    content: |
+      ## XOR – Exclusive OR
+      De uitgang is AAN wanneer precies één ingang AAN is.
+  - type: entities
+    title: Ingangen
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.xor_a
+        name: Ingang A
+        tap_action:
+          action: none
+      - entity: input_boolean.xor_b
+        name: Ingang B
+        tap_action:
+          action: none
+  - type: tile
+    entity: input_boolean.xor_result
+    name: XOR-uitgang
+    icon: mdi:lightbulb
+    color: amber
+
+
+type: vertical-stack
+cards:
+  - type: markdown
+    content: |
+      ## NOT – Negatie
+      De uitgang is altijd het tegenovergestelde van de ingang.
+  - type: entities
+    title: Ingang
+    entities:
+      - entity: input_boolean.not_input
+        name: Ingang
+        tap_action:
+          action: none
+  - type: tile
+    entity: input_boolean.not_result
+    name: NOT-uitgang
+    icon: mdi:lightbulb
+    color: amber
+
+
+type: entities
+title: XOR – Bewegingsmelders
+show_header_toggle: false
+entities:
+  - entity: binary_sensor.beweging_woonkamer
+    name: Bewegingsmelder woonkamer
+    tap_action:
+      action: none
+  - entity: binary_sensor.beweging_hal
+    name: Bewegingsmelder hal
+    tap_action:
+      action: none
+  - entity: light.waarschuwingslamp
+    name: Waarschuwingslamp
+    tap_action:
+      action: none
+
+
+type: entities
+title: NOT – Raam en verwarming
+show_header_toggle: false
+entities:
+  - entity: binary_sensor.raam_woonkamer
+    name: Raam woonkamer
+    tap_action:
+      action: none
+  - entity: input_boolean.verwarming_toegestaan
+    name: Verwarming toegestaan
+    tap_action:
+      action: none
+
+
+type: markdown
+content: |
+  ## Waarheidstabellen
+
+  **XOR**
+
+  | A | B | Uitgang |
+  |---|---|---|
+  | UIT | UIT | UIT |
+  | AAN | UIT | AAN |
+  | UIT | AAN | AAN |
+  | AAN | AAN | UIT |
+
+  **NOT**
+
+  | Ingang | Uitgang |
+  |---|---|
+  | UIT | AAN |
+  | AAN | UIT |
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
