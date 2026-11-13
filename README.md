@@ -141,7 +141,7 @@ triggers:
 De automation wordt gestart zodra één van de twee schakelaars verandert.
 Wanneer je meerdere triggers opgeeft, is het voldoende dat één trigger optreedt. Dit werkt standaard als OR (OF).
 
-Hier kun je gebruikmaken van onder andere:
+Bij conditions kun je gebruikmaken van onder andere:
 
 - AND: alle voorwaarden moeten waar zijn.
 - OR: minimaal één voorwaarde moet waar zijn.
