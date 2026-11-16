@@ -292,6 +292,12 @@ Hoewel beide functies eenvoudig lijken, kunnen ze in bepaalde situaties bijzonde
 Met de virtuele schakelaars en het simulatie-dashboard heb je een eenvoudige manier om de werking te begrijpen en zelf te testen.
 Samen met AND en OR vormen deze logische functies een mooie basis voor het maken van slimme en geavanceerde automatiseringen in Home Assistant.
 
+## Entity-ID's aanpassen
+
+De entity-ID's in dit project zijn voorbeelden uit mijn eigen Home Assistant-installatie. Vervang deze door de overeenkomstige entity-ID's uit jouw eigen installatie. Controleer daarbij alle YAML-bestanden, inclusief de templates, automatiseringen en het dashboard. Let ook op de gebruikte notificatieservices en helpers.
+
+Hoe je dit eenvoudig kunt doen, lees je in mijn aparte handleiding: [Entities – Entity-ID's aanpassen](https://github.com/henkhoekema/Entities).
+
 ## Licentie en gebruiksvoorwaarden
 
 Deze automatisering mag vrij worden gebruikt en aangepast voor eigen gebruik.
